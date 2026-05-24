@@ -1,0 +1,59 @@
+# Fish Audio S2 - ComfyUI custom nodes
+#
+# All packages below are handled automatically by __init__.py on startup.
+# You do NOT need to run this file manually under normal circumstances.
+#
+# If auto-install fails, uncomment and install the missing packages manually:
+#   pip install -r requirements.txt
+#
+# fish-speech is bundled in fish_speech_src/ — do NOT pip install it.
+# DO NOT add torch/torchaudio here — ComfyUI manages those.
+
+numpy
+tqdm
+soundfile
+loguru
+transformers>=4.45.2
+einops>=0.7.0
+librosa>=0.10.1
+rich>=13.5.3
+ormsgpack
+pydantic>=2.9.2
+tiktoken>=0.8.0
+cachetools
+zstandard>=0.22.0
+resampy>=0.4.3
+safetensors>=0.4.0
+pyrootutils>=1.0.4
+natsort>=8.4.0
+loralib>=0.1.2
+hydra-core>=1.3.2
+
+# Transitive runtime deps of descript-audio-codec / descript-audiotools.
+# These are auto-installed by __init__.py before dac/audiotools.
+# If nodes fail to load, install these manually then restart ComfyUI.
+flatten-dict
+importlib-resources
+julius
+randomname
+ffmpy
+argbind
+tensorboard
+
+# descript-audio-codec and descript-audiotools MUST be installed with --no-deps.
+# They carry a protobuf<5 upper-bound that conflicts with tensorflow, mediapipe,
+# florence2, and many other ComfyUI nodes in shared environments.
+# __init__.py handles this automatically. If you need to install manually:
+#   pip install descript-audio-codec --no-deps
+#   pip install "descript-audiotools>=0.7.2" --no-deps
+# DO NOT install them without --no-deps or it will break other nodes.
+# descript-audio-codec --no-deps
+# descript-audiotools>=0.7.2 --no-deps
+
+bitsandbytes
+huggingface-hub
+
+# einx is NOT required — it is not used anywhere in the bundled fish_speech source.
+# It was previously listed here but caused startup failures in environments with
+# a jax.py namespace conflict (certain launchers / custom node packs).
+# einx==0.2.2

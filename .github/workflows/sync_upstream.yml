@@ -1,0 +1,101 @@
+# .github/workflows/sync_upstream.yml
+#
+# Automated upstream sync workflow for the INT4 patch branch.
+#
+# Runs daily and on-demand. When the upstream node releases a new commit:
+#   1. Rebase this branch on top of upstream/main
+#   2. Run apply_int4_patch.py --apply to re-inject any missing changes
+#   3. Run the patch verifier to confirm everything is in place
+#   4. Open a PR if a rebase was needed
+#
+# Secrets required:
+#   GH_TOKEN — a GitHub PAT with repo write permissions (for opening PRs)
+
+name: Sync with upstream
+
+on:
+  schedule:
+    - cron: "0 6 * * *"    # daily at 06:00 UTC
+  workflow_dispatch:         # manual trigger from GitHub UI
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout int4-patch branch
+        uses: actions/checkout@v4
+        with:
+          ref: int4-patch
+          fetch-depth: 0
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/Saganaki22/ComfyUI-FishAudioS2.git || true
+          git fetch upstream
+
+      - name: Check for new upstream commits
+        id: check
+        run: |
+          UPSTREAM_SHA=$(git rev-parse upstream/main)
+          BASE_SHA=$(git merge-base HEAD upstream/main)
+          if [ "$UPSTREAM_SHA" = "$BASE_SHA" ]; then
+            echo "up_to_date=true" >> "$GITHUB_OUTPUT"
+            echo "No new upstream commits. Nothing to do."
+          else
+            echo "up_to_date=false" >> "$GITHUB_OUTPUT"
+            echo "New upstream commits detected: $BASE_SHA → $UPSTREAM_SHA"
+          fi
+
+      - name: Rebase on upstream/main
+        if: steps.check.outputs.up_to_date == 'false'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git rebase upstream/main || {
+            echo "::error::Rebase conflict. Manual resolution required."
+            git rebase --abort
+            exit 1
+          }
+
+      - name: Set up Python
+        if: steps.check.outputs.up_to_date == 'false'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Re-apply INT4 patch changes
+        if: steps.check.outputs.up_to_date == 'false'
+        run: |
+          python scripts/apply_int4_patch.py --apply
+          # Stage any files the script modified
+          git add -A
+          git diff --cached --quiet || \
+            git commit -m "chore: re-apply INT4 patch after upstream rebase [automated]"
+
+      - name: Verify INT4 patch integrity
+        if: steps.check.outputs.up_to_date == 'false'
+        run: |
+          python scripts/apply_int4_patch.py --check
+          echo "All INT4 patch checks passed."
+
+      - name: Push updated branch
+        if: steps.check.outputs.up_to_date == 'false'
+        run: |
+          git push origin int4-patch --force-with-lease
+
+      - name: Create Pull Request summary
+        if: steps.check.outputs.up_to_date == 'false'
+        run: |
+          UPSTREAM_VER=$(git log upstream/main -1 --format="%h %s")
+          echo "## INT4 patch rebased on upstream" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Upstream commit:** $UPSTREAM_VER" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Checks performed" >> "$GITHUB_STEP_SUMMARY"
+          python scripts/apply_int4_patch.py --check 2>&1 | \
+            sed 's/^/- /' >> "$GITHUB_STEP_SUMMARY" || true

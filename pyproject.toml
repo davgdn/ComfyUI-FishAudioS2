@@ -1,0 +1,48 @@
+[project]
+name = "ComfyUI-fish-audio-s2"
+description = "ComfyUI custom nodes for Fish Audio S2-Pro TTS | voice clone, multi-speaker, and text-to-speech"
+version = "0.5.3"
+license = {file = "LICENSE"}
+dependencies = [
+    "numpy",
+    "tqdm",
+    "soundfile",
+    "loguru",
+    "transformers",
+    "einops",
+    "librosa",
+    "rich",
+    "ormsgpack",
+    "pydantic",
+    "tiktoken",
+    "cachetools",
+    "zstandard",
+    "resampy",
+    "safetensors",
+    "pyrootutils",
+    "natsort",
+    "loralib",
+    "hydra-core",
+    "bitsandbytes",
+    "huggingface-hub",
+    # Transitive runtime deps of descript-audio-codec / descript-audiotools.
+    # Listed here for ComfyUI Manager awareness. Auto-installed by __init__.py.
+    "flatten-dict",
+    "importlib-resources",
+    "julius",
+    "randomname",
+    "ffmpy",
+    "argbind",
+    "tensorboard",
+    # descript-audio-codec and descript-audiotools are intentionally excluded.
+    # They MUST be installed with --no-deps to avoid their protobuf<5 constraint
+    # breaking shared ComfyUI environments. __init__.py handles this automatically.
+]
+
+[project.urls]
+Repository = "https://github.com/Saganaki22/ComfyUI-FishAudioS2"
+
+[tool.comfy]
+PublisherId = "saganaki22"
+DisplayName = "Fish Audio S2 TTS"
+Icon = "https://avatars.githubusercontent.com/u/84208527"

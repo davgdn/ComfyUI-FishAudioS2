@@ -1,0 +1,916 @@
+{
+  "id": "0c358f16-3754-4bd2-be92-3d9f3f96d48c",
+  "revision": 0,
+  "last_node_id": 42,
+  "last_link_id": 42,
+  "nodes": [
+    {
+      "id": 7,
+      "type": "Audio To Text (mtb)",
+      "pos": [
+        -1570.9366504913753,
+        1312.3886077431252
+      ],
+      "size": [
+        270,
+        102
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipeline",
+          "type": "WHISPER_PIPELINE",
+          "link": 3
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 25
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "WHISPER_OUTPUT",
+          "type": "WHISPER_OUTPUT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-mtb",
+        "ver": "0.5.4",
+        "Node name for S&R": "Audio To Text (mtb)"
+      },
+      "widgets_values": [
+        "auto",
+        false
+      ]
+    },
+    {
+      "id": 6,
+      "type": "Load Whisper (mtb)",
+      "pos": [
+        -1552.4227540481647,
+        1461.9005359687267
+      ],
+      "size": [
+        210,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "pipeline",
+          "type": "WHISPER_PIPELINE",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-mtb",
+        "ver": "0.5.4",
+        "Node name for S&R": "Load Whisper (mtb)"
+      },
+      "widgets_values": [
+        "large-v3",
+        false
+      ]
+    },
+    {
+      "id": 39,
+      "type": "MarkdownNote",
+      "pos": [
+        -1289.9614124769573,
+        1828.0698536969624
+      ],
+      "size": [
+        354.6954237219629,
+        88
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "## ⬆️ True (STT Whisper) / False (custom TXT)"
+      ],
+      "color": "#c09430",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 19,
+      "type": "PreviewAudio",
+      "pos": [
+        -551.2306813622239,
+        1542.9618774733426
+      ],
+      "size": [
+        389.3472371792841,
+        126.87310597423561
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 39
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 18,
+      "type": "LoadAudio",
+      "pos": [
+        -547.9653639823974,
+        786.82150091903
+      ],
+      "size": [
+        379.8985321448199,
+        137.18412290060564
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            17,
+            38,
+            40
+          ]
+        }
+      ],
+      "title": "Speaker 2",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "sample-2.mp3",
+        null,
+        null
+      ]
+    },
+    {
+      "id": 17,
+      "type": "LoadAudio",
+      "pos": [
+        -550.1711054567234,
+        602.2716313977381
+      ],
+      "size": [
+        379.8985321448199,
+        137.18412290060564
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            16,
+            37,
+            41
+          ]
+        }
+      ],
+      "title": "Speaker 1",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "sample-1.mp3",
+        null,
+        null
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoadAudio",
+      "pos": [
+        -979.5454167609595,
+        611.359226272031
+      ],
+      "size": [
+        379.8985321448199,
+        137.18412290060564
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            14,
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "sample-2.mp3",
+        null,
+        null
+      ]
+    },
+    {
+      "id": 16,
+      "type": "PreviewAudio",
+      "pos": [
+        -983.3921914261992,
+        1504.496082302565
+      ],
+      "size": [
+        389.3472371792841,
+        126.87310597423561
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 15
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 8,
+      "type": "ShowText|pysssss",
+      "pos": [
+        -1288.6156864411435,
+        1314.700134850292
+      ],
+      "size": [
+        267.7391200406364,
+        228.36269105312203
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "shape": 6,
+          "type": "STRING",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-custom-scripts",
+        "ver": "609f3afaa74b2f88ef9ce8d939626065e3247469",
+        "Node name for S&R": "ShowText|pysssss"
+      },
+      "widgets_values": [
+        " It's not about what we have or what we achieve, but about how we experience each moment. This is the most profound secret of life."
+      ]
+    },
+    {
+      "id": 31,
+      "type": "Text Box line spot",
+      "pos": [
+        -1594.513831416997,
+        1610.1323975590242
+      ],
+      "size": [
+        286.0297341749423,
+        167.6045678068499
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "passthrough",
+          "shape": 7,
+          "type": "STRING",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "text",
+          "type": "STRING",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "title": "Speaker Text Reference",
+      "properties": {
+        "cnr_id": "crt-nodes",
+        "ver": "0703ca052b7ce00b4de399103dff131d5d0d4bec",
+        "Node name for S&R": "Text Box line spot"
+      },
+      "widgets_values": [
+        " It's not about what we have or what we achieve, but about how we experience each moment. This is the most profound secret of life."
+      ]
+    },
+    {
+      "id": 38,
+      "type": "MarkdownNote",
+      "pos": [
+        -1833.1872128110867,
+        1436.0738233624877
+      ],
+      "size": [
+        220.93774647025316,
+        222.29098359964541
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "## If you want to use auto transcription for source audio set toggle to true ➡️\n \n## if not toggle false and paste your reference text in the text field below "
+      ],
+      "color": "#c09430",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 34,
+      "type": "ComfySwitchNode",
+      "pos": [
+        -1296.2015641837745,
+        1604.0069225672958
+      ],
+      "size": [
+        288.71563718714185,
+        78
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "on_false",
+          "type": "STRING",
+          "link": 28
+        },
+        {
+          "name": "on_true",
+          "type": "STRING",
+          "link": 27
+        },
+        {
+          "name": "switch",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "switch"
+          },
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "STRING",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "ComfySwitchNode"
+      },
+      "widgets_values": [
+        false
+      ]
+    },
+    {
+      "id": 35,
+      "type": "PrimitiveBoolean",
+      "pos": [
+        -1293.281160188799,
+        1722.4874531158168
+      ],
+      "size": [
+        311.2046875,
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BOOLEAN",
+          "type": "BOOLEAN",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "title": "True (STT Whisper) / False (custom TXT)",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "PrimitiveBoolean"
+      },
+      "widgets_values": [
+        true
+      ]
+    },
+    {
+      "id": 22,
+      "type": "MarkdownNote",
+      "pos": [
+        -126.62949137478357,
+        576.1630697439277
+      ],
+      "size": [
+        546.1582812039053,
+        834.4829895379138
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "# Fish Audio S2 TTS\n\n## Auto-Download\n\n**Models auto-download on first run** - no manual setup needed!\n\n| Model | VRAM | Size |\n|-------|------|------|\n| s2-pro (bf16) | ~24GB | ~10GB |\n| s2-pro-fp8 | ~20GB | ~8GB |\n| s2-pro-BNB-int8 | ~20GB | ~10GB |\n| s2-pro-BNB-nf4 | ~16GB  | ~10GB  |\n---\n\n## Manual Download\n\n| File | Size | Link |\n|------|------|------|\n| s2-pro (Full) | ~10GB | [Download](https://huggingface.co/fishaudio/s2-pro) |\n| s2-pro-fp8 | ~8GB | [Download](https://huggingface.co/drbaph/s2-pro-fp8) |\n\n\nPlace in:\n```\nComfyUI/models/FishAudioS2/\n├── s2-pro/\n│   ├── config.json\n│   ├── model.safetensors\n│   └── ...\n└── s2-pro-fp8/\n    ├── config.json\n    ├── model.safetensors\n    └── ...\n```\n\n---\n\n## BNB Model use the s2-pro model as base and quantise on the fly using bitsandbytes\n\n---\n\n## Common tags (15,000+ unique tags supported):\n\n## [pause] [emphasis] [laughing] [inhale] [chuckle] [tsk] [singing] [excited] [laughing tone] [interrupting] [chuckling] [excited tone] [volume up] [echo] [angry] [low volume] [sigh] [low voice] [whisper] [screaming] [shouting] [loud] [surprised] [short pause] [exhale] [delight] [panting] [audience laughter] [with strong accent] [volume down] [clearing throat] [sad] [moaning] [shocked]\n\n---\n\n## Links\n\n- Original [fish-speech](https://github.com/fishaudio/fish-speech)\n- Models [s2-pro](https://huggingface.co/fishaudio/s2-pro) / [s2-pro-fp8](https://huggingface.co/drbaph/s2-pro-fp8)\n- Issues [Report Bug](https://github.com/Saganaki22/ComfyUI-FishAudioS2/issues)"
+      ],
+      "color": "#c09430",
+      "bgcolor": "rgba(24,24,27,.9)"
+    },
+    {
+      "id": 2,
+      "type": "PreviewAudio",
+      "pos": [
+        -1424.3566879270684,
+        1084.7592682351908
+      ],
+      "size": [
+        389.3472371792841,
+        126.87310597423561
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 42
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.16.4",
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 41,
+      "type": "FishS2MultiSpeakerTTS",
+      "pos": [
+        -558.6896109857566,
+        958.5808953361638
+      ],
+      "size": [
+        400,
+        564
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "speaker_1_audio",
+          "name": "num_speakers.speaker_1_audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 40
+        },
+        {
+          "label": "speaker_2_audio",
+          "name": "num_speakers.speaker_2_audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 41
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            39
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-fish-audio-s2",
+        "ver": "e85aeca472fbffca7b6806feb6792903780fb15f",
+        "Node name for S&R": "FishS2MultiSpeakerTTS"
+      },
+      "widgets_values": [
+        "s2-pro",
+        "[speaker_1]: Hello, I'm speaker one.\n[speaker_2]: And I'm speaker two!",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        0,
+        200,
+        0.7,
+        0.7,
+        1.2,
+        42,
+        "fixed",
+        true,
+        true,
+        false,
+        0.3,
+        "2",
+        "",
+        ""
+      ]
+    },
+    {
+      "id": 14,
+      "type": "FishS2VoiceCloneTTS",
+      "pos": [
+        -982.7384828344611,
+        807.3007714331799
+      ],
+      "size": [
+        389.0623462500148,
+        649.9654076059737
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "reference_audio",
+          "type": "AUDIO",
+          "link": 14
+        },
+        {
+          "name": "reference_text",
+          "shape": 7,
+          "type": "STRING",
+          "widget": {
+            "name": "reference_text"
+          },
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-fish-audio-s2",
+        "ver": "b61bec15d943c1c84909b1bc93b77a862986745f",
+        "Node name for S&R": "FishS2VoiceCloneTTS",
+        "aux_id": "Saganaki22/ComfyUI-FishAudioS2"
+      },
+      "widgets_values": [
+        "s2-pro",
+        "Hello! [excited] This is my cloned voice.",
+        "auto",
+        "auto",
+        "bfloat16",
+        "sage_attention",
+        0,
+        200,
+        0.7,
+        0.7,
+        1.2,
+        42,
+        "fixed",
+        true,
+        true,
+        false,
+        ""
+      ]
+    },
+    {
+      "id": 42,
+      "type": "FishS2TTS",
+      "pos": [
+        -1428.1616503783164,
+        601.1930131820274
+      ],
+      "size": [
+        400,
+        448
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            42
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-fish-audio-s2",
+        "ver": "4dfc9e08ceaa7956f27f2857bff511b9ed75dc95",
+        "Node name for S&R": "FishS2TTS"
+      },
+      "widgets_values": [
+        "s2-pro-fp8",
+        "Hello! [excited] This is Fish Audio S2.",
+        "auto",
+        "auto",
+        "auto",
+        "auto",
+        192,
+        200,
+        0.7,
+        0.7,
+        1.2,
+        42,
+        "fixed",
+        true,
+        true,
+        false
+      ]
+    }
+  ],
+  "links": [
+    [
+      3,
+      6,
+      0,
+      7,
+      0,
+      "WHISPER_PIPELINE"
+    ],
+    [
+      5,
+      7,
+      0,
+      8,
+      0,
+      "STRING"
+    ],
+    [
+      14,
+      15,
+      0,
+      14,
+      0,
+      "AUDIO"
+    ],
+    [
+      15,
+      14,
+      0,
+      16,
+      0,
+      "AUDIO"
+    ],
+    [
+      16,
+      17,
+      0,
+      13,
+      15,
+      "AUDIO"
+    ],
+    [
+      17,
+      18,
+      0,
+      13,
+      17,
+      "AUDIO"
+    ],
+    [
+      25,
+      15,
+      0,
+      7,
+      1,
+      "AUDIO"
+    ],
+    [
+      27,
+      8,
+      0,
+      34,
+      1,
+      "STRING"
+    ],
+    [
+      28,
+      31,
+      0,
+      34,
+      0,
+      "STRING"
+    ],
+    [
+      29,
+      34,
+      0,
+      14,
+      1,
+      "STRING"
+    ],
+    [
+      30,
+      35,
+      0,
+      34,
+      2,
+      "BOOLEAN"
+    ],
+    [
+      37,
+      17,
+      0,
+      40,
+      0,
+      "AUDIO"
+    ],
+    [
+      38,
+      18,
+      0,
+      40,
+      1,
+      "AUDIO"
+    ],
+    [
+      39,
+      41,
+      0,
+      19,
+      0,
+      "AUDIO"
+    ],
+    [
+      40,
+      18,
+      0,
+      41,
+      0,
+      "AUDIO"
+    ],
+    [
+      41,
+      17,
+      0,
+      41,
+      1,
+      "AUDIO"
+    ],
+    [
+      42,
+      42,
+      0,
+      2,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "TTS",
+      "bounding": [
+        -1438.1616503783164,
+        537.0475530879222,
+        420,
+        679.2955447462447
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Voice Clone",
+      "bounding": [
+        -993.3921914261992,
+        537.759226272031,
+        409.7160548417529,
+        1103.6099620047694
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "Multi Speaker Clone",
+      "bounding": [
+        -563.1121501849206,
+        538.2299846925577,
+        412.83792936131067,
+        1141.6049987550205
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "whisper STT Voice Clone (Optional)",
+      "bounding": [
+        -1580.9366504913753,
+        1238.7886077431253,
+        570.0600840908683,
+        315.11192822560145
+      ],
+      "color": "#a1309b",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "workflowRendererVersion": "LG",
+    "ds": {
+      "scale": 0.5644739300537773,
+      "offset": [
+        2593.0797507362377,
+        3.8859122242610056
+      ]
+    },
+    "frontendVersion": "1.41.18",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

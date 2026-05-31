@@ -51,16 +51,23 @@ jobs:
             echo "New upstream commits detected, rebasing onto upstream/main"
           fi
 
-      - name: Rebase on upstream/main
+      - name: Merge upstream/main (ours strategy on patched files)
         if: steps.check.outputs.up_to_date == 'false'
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git rebase upstream/main || {
-            echo "::error::Rebase conflict. Manual resolution required."
-            git rebase --abort
-            exit 1
-          }
+
+          # Merge aceptando upstream por defecto
+          git merge upstream/main --no-edit --strategy-option=theirs || true
+
+          # Restaurar NUESTRA versión de los archivos parcheados
+          git checkout HEAD -- __init__.py
+          git checkout HEAD -- nodes/loader.py
+          git checkout HEAD -- fish_speech_src/fish_speech/models/text2semantic/llama.py
+
+          # Resolver conflictos pendientes
+          git add -A
+          git commit -m "chore: merge upstream/main, preserve INT4 patch [automated]" || true
 
       - name: Set up Python
         if: steps.check.outputs.up_to_date == 'false'

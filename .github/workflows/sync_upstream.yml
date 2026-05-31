@@ -42,13 +42,13 @@ jobs:
         id: check
         run: |
           UPSTREAM_SHA=$(git rev-parse upstream/main)
-          BASE_SHA=$(git merge-base HEAD upstream/main)
-          if [ "$UPSTREAM_SHA" = "$BASE_SHA" ]; then
+          # Buscar si upstream/main ya está en el historial de este branch
+          if git merge-base --is-ancestor upstream/main HEAD; then
             echo "up_to_date=true" >> "$GITHUB_OUTPUT"
             echo "No new upstream commits. Nothing to do."
           else
             echo "up_to_date=false" >> "$GITHUB_OUTPUT"
-            echo "New upstream commits detected: $BASE_SHA → $UPSTREAM_SHA"
+            echo "New upstream commits detected, rebasing onto upstream/main"
           fi
 
       - name: Rebase on upstream/main
